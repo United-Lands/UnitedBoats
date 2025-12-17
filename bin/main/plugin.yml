@@ -1,0 +1,10 @@
+api-version: 1.21.10
+name: UnitedBoats
+version: 1.0.5-SNAPSHOT
+main: org.unitedlands.boats.UnitedBoats
+description: UnitedBoats anti-boat-lag plugin
+load: STARTUP
+authors:
+- Theriel_
+depend:
+- TimingSystem
