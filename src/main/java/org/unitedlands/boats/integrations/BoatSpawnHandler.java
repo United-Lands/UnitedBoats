@@ -4,9 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Boat;
 import org.unitedlands.boats.UnitedBoats;
 
-import me.makkuusen.timing.system.boat.BoatSpawner;
-
-public class BoatSpawnHandler implements BoatSpawner {
+public class BoatSpawnHandler {
 
     private final UnitedBoats plugin;
 
@@ -14,7 +12,6 @@ public class BoatSpawnHandler implements BoatSpawner {
         this.plugin = plugin;
     }
 
-    @Override
     public Boat spawnBoat(Location location, String woodType, Boolean chestBoat) {
 
         plugin.getLogger().info("Spawning collisionless boat for TimingSystem...");

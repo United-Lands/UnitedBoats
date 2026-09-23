@@ -2,18 +2,18 @@ import xyz.jpenilla.resourcefactory.bukkit.BukkitPluginYaml
 
 plugins {
   `java-library`
-  id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
+  id("io.papermc.paperweight.userdev") version "2.0.0-beta.22"
   id("xyz.jpenilla.run-paper") version "3.0.2" // Adds runServer and runMojangMappedServer tasks for testing
   id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.3.0" // Generates plugin.yml based on the Gradle config
 }
 
 group = "org.unitedlands.boats"
-version = "1.0.5-SNAPSHOT"
+version = "1.0.9-SNAPSHOT"
 description = "UnitedBoats anti-boat-lag plugin"
 
 java {
   // Configure the java toolchain. This allows gradle to auto-provision JDK 21 on systems that only have JDK 11 installed for example.
-  toolchain.languageVersion = JavaLanguageVersion.of(21)
+  toolchain.languageVersion = JavaLanguageVersion.of(25)
 }
 
 // For 1.20.4 or below, or when you care about supporting Spigot on >=1.20.5:
@@ -27,19 +27,22 @@ tasks.assemble {
 
 repositories {
   mavenCentral()
+  mavenLocal()
 	maven { url = uri("https://jitpack.io") }
+  gradlePluginPortal()
+  maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
-  paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
-  compileOnly("com.github.FrostHexABG:TimingSystem:3.1")
+  paperweight.paperDevBundle("26.2.build.+")
+  compileOnly("org.unitedlands:UnitedLib:2.0")
 }
 
 tasks {
   compileJava {
     // Set the release flag. This configures what version bytecode the compiler will emit, as well as what JDK APIs are usable.
     // See https://openjdk.java.net/jeps/247 for more information.
-    options.release = 21
+    options.release = 25
   }
   javadoc {
     options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
@@ -59,8 +62,7 @@ tasks {
 // - name, version, and description are inherited from the Gradle project.
 bukkitPluginYaml {
   main = "org.unitedlands.boats.UnitedBoats"
-  load = BukkitPluginYaml.PluginLoadOrder.STARTUP
   authors.add("Theriel_")
-  apiVersion = "1.21.10"
-  depend.add("TimingSystem")
+  apiVersion = "26.2"
+  depend.add("UnitedLib")
 }

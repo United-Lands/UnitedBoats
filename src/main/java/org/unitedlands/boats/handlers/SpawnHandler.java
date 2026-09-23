@@ -33,6 +33,11 @@ import org.unitedlands.boats.classes.CollisionlessRaft;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
+
+import net.minecraft.world.entity.vehicle.boat.ChestBoat;
+import net.minecraft.world.entity.vehicle.boat.ChestRaft;
+import net.minecraft.world.entity.vehicle.boat.Raft;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
@@ -53,45 +58,46 @@ public class SpawnHandler {
 
         Item dropItem;
 
-        if (entityType == EntityType.OAK_BOAT) {
+
+        if (entityType == EntityTypes.OAK_BOAT) {
             dropItem = Items.OAK_BOAT;
-        } else if (entityType == EntityType.OAK_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.OAK_CHEST_BOAT) {
             dropItem = Items.OAK_CHEST_BOAT;
-        } else if (entityType == EntityType.BIRCH_BOAT) {
+        } else if (entityType == EntityTypes.BIRCH_BOAT) {
             dropItem = Items.BIRCH_BOAT;
-        } else if (entityType == EntityType.BIRCH_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.BIRCH_CHEST_BOAT) {
             dropItem = Items.BIRCH_CHEST_BOAT;
-        } else if (entityType == EntityType.SPRUCE_BOAT) {
+        } else if (entityType == EntityTypes.SPRUCE_BOAT) {
             dropItem = Items.SPRUCE_BOAT;
-        } else if (entityType == EntityType.SPRUCE_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.SPRUCE_CHEST_BOAT) {
             dropItem = Items.SPRUCE_CHEST_BOAT;
-        } else if (entityType == EntityType.JUNGLE_BOAT) {
+        } else if (entityType == EntityTypes.JUNGLE_BOAT) {
             dropItem = Items.JUNGLE_BOAT;
-        } else if (entityType == EntityType.JUNGLE_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.JUNGLE_CHEST_BOAT) {
             dropItem = Items.JUNGLE_CHEST_BOAT;
-        } else if (entityType == EntityType.ACACIA_BOAT) {
+        } else if (entityType == EntityTypes.ACACIA_BOAT) {
             dropItem = Items.ACACIA_BOAT;
-        } else if (entityType == EntityType.ACACIA_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.ACACIA_CHEST_BOAT) {
             dropItem = Items.ACACIA_CHEST_BOAT;
-        } else if (entityType == EntityType.DARK_OAK_BOAT) {
+        } else if (entityType == EntityTypes.DARK_OAK_BOAT) {
             dropItem = Items.DARK_OAK_BOAT;
-        } else if (entityType == EntityType.DARK_OAK_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.DARK_OAK_CHEST_BOAT) {
             dropItem = Items.DARK_OAK_CHEST_BOAT;
-        } else if (entityType == EntityType.MANGROVE_BOAT) {
+        } else if (entityType == EntityTypes.MANGROVE_BOAT) {
             dropItem = Items.MANGROVE_BOAT;
-        } else if (entityType == EntityType.MANGROVE_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.MANGROVE_CHEST_BOAT) {
             dropItem = Items.MANGROVE_CHEST_BOAT;
-        } else if (entityType == EntityType.CHERRY_BOAT) {
+        } else if (entityType == EntityTypes.CHERRY_BOAT) {
             dropItem = Items.CHERRY_BOAT;
-        } else if (entityType == EntityType.CHERRY_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.CHERRY_CHEST_BOAT) {
             dropItem = Items.CHERRY_CHEST_BOAT;
-        } else if (entityType == EntityType.BAMBOO_RAFT) {
+        } else if (entityType == EntityTypes.BAMBOO_RAFT) {
             dropItem = Items.BAMBOO_RAFT;
-        } else if (entityType == EntityType.BAMBOO_CHEST_RAFT) {
+        } else if (entityType == EntityTypes.BAMBOO_CHEST_RAFT) {
             dropItem = Items.BAMBOO_CHEST_RAFT;
-        } else if (entityType == EntityType.PALE_OAK_BOAT) {
+        } else if (entityType == EntityTypes.PALE_OAK_BOAT) {
             dropItem = Items.PALE_OAK_BOAT;
-        } else if (entityType == EntityType.PALE_OAK_CHEST_BOAT) {
+        } else if (entityType == EntityTypes.PALE_OAK_CHEST_BOAT) {
             dropItem = Items.PALE_OAK_CHEST_BOAT;
         } else {
             dropItem = Items.DIRT;
@@ -102,7 +108,7 @@ public class SpawnHandler {
 
             if (typeString.endsWith("_CHEST_RAFT")) {
                 CollisionlessChestRaft raft = new CollisionlessChestRaft(
-                        (EntityType<? extends net.minecraft.world.entity.vehicle.ChestRaft>) entityType, level,
+                        (EntityType<? extends ChestRaft>) entityType, level,
                         () -> dropItem);
 
                 float yaw = Location.normalizeYaw(location.getYaw());
@@ -113,7 +119,7 @@ public class SpawnHandler {
                 level.addFreshEntity(raft, CreatureSpawnEvent.SpawnReason.COMMAND);
             } else {
                 CollisionlessRaft raft = new CollisionlessRaft(
-                        (EntityType<? extends net.minecraft.world.entity.vehicle.Raft>) entityType, level,
+                        (EntityType<? extends Raft>) entityType, level,
                         () -> dropItem);
 
                 float yaw = Location.normalizeYaw(location.getYaw());
@@ -127,7 +133,7 @@ public class SpawnHandler {
 
             if (typeString.endsWith("_CHEST_BOAT")) {
                 CollisionlessChestBoat boat = new CollisionlessChestBoat(
-                        (EntityType<? extends net.minecraft.world.entity.vehicle.ChestBoat>) entityType, level,
+                        (EntityType<? extends ChestBoat>) entityType, level,
                         () -> dropItem);
                 float yaw = Location.normalizeYaw(location.getYaw());
                 boat.setYRot(yaw);
@@ -139,7 +145,7 @@ public class SpawnHandler {
                 level.addFreshEntity(boat, CreatureSpawnEvent.SpawnReason.COMMAND);
             } else {
                 CollisionlessBoat boat = new CollisionlessBoat(
-                        (EntityType<? extends net.minecraft.world.entity.vehicle.Boat>) entityType, level,
+                        (EntityType<? extends net.minecraft.world.entity.vehicle.boat.Boat>) entityType, level,
                         () -> dropItem);
                 float yaw = Location.normalizeYaw(location.getYaw());
                 boat.setYRot(yaw);
@@ -161,7 +167,7 @@ public class SpawnHandler {
 
         switch (boatType) {
             case "OAK_BOAT":
-                CollisionlessBoat oakBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.OAK_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat oakBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.OAK_BOAT, level, () -> Items.AIR);
                 oakBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 oakBoat.setYRot(yaw);
                 oakBoat.yRotO = yaw;
@@ -170,7 +176,7 @@ public class SpawnHandler {
                 boat = new CraftOakBoat(level.getCraftServer(), oakBoat);
                 break;
             case "SPRUCE_BOAT":
-                CollisionlessBoat spruceBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.SPRUCE_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat spruceBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.SPRUCE_BOAT, level, () -> Items.AIR);
                 spruceBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 spruceBoat.setYRot(yaw);
                 spruceBoat.yRotO = yaw;
@@ -179,7 +185,7 @@ public class SpawnHandler {
                 boat = new CraftSpruceBoat(level.getCraftServer(), spruceBoat);
                 break;
             case "BIRCH_BOAT":
-                CollisionlessBoat birchBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.BIRCH_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat birchBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.BIRCH_BOAT, level, () -> Items.AIR);
                 birchBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 birchBoat.setYRot(yaw);
                 birchBoat.yRotO = yaw;
@@ -188,7 +194,7 @@ public class SpawnHandler {
                 boat = new CraftBirchBoat(level.getCraftServer(), birchBoat);
                 break;
             case "JUNGLE_BOAT":
-                CollisionlessBoat jungleBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.JUNGLE_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat jungleBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.JUNGLE_BOAT, level, () -> Items.AIR);
                 jungleBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 jungleBoat.setYRot(yaw);
                 jungleBoat.yRotO = yaw;
@@ -197,7 +203,7 @@ public class SpawnHandler {
                 boat = new CraftJungleBoat(level.getCraftServer(), jungleBoat);
                 break;
             case "ACACIA_BOAT":
-                CollisionlessBoat acaciaBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.ACACIA_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat acaciaBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.ACACIA_BOAT, level, () -> Items.AIR);
                 acaciaBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 acaciaBoat.setYRot(yaw);
                 acaciaBoat.yRotO = yaw;
@@ -206,7 +212,7 @@ public class SpawnHandler {
                 boat = new CraftAcaciaBoat(level.getCraftServer(), acaciaBoat);
                 break;
             case "DARK_OAK_BOAT":
-                CollisionlessBoat darkOakBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.DARK_OAK_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat darkOakBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.DARK_OAK_BOAT, level, () -> Items.AIR);
                 darkOakBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 darkOakBoat.setYRot(yaw);
                 darkOakBoat.yRotO = yaw;
@@ -215,7 +221,7 @@ public class SpawnHandler {
                 boat = new CraftDarkOakBoat(level.getCraftServer(), darkOakBoat);
                 break;
             case "MANGROVE_BOAT":
-                CollisionlessBoat mangroveBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.MANGROVE_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat mangroveBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.MANGROVE_BOAT, level, () -> Items.AIR);
                 mangroveBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 mangroveBoat.setYRot(yaw);
                 mangroveBoat.yRotO = yaw;
@@ -224,7 +230,7 @@ public class SpawnHandler {
                 boat = new CraftMangroveBoat(level.getCraftServer(), mangroveBoat);
                 break;
             case "CHERRY_BOAT":
-                CollisionlessBoat cherryBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.CHERRY_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat cherryBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.CHERRY_BOAT, level, () -> Items.AIR);
                 cherryBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 cherryBoat.setYRot(yaw);
                 cherryBoat.yRotO = yaw;
@@ -233,7 +239,7 @@ public class SpawnHandler {
                 boat = new CraftCherryBoat(level.getCraftServer(), cherryBoat);
                 break;
             case "BAMBOO_RAFT":
-                CollisionlessRaft bambooRaft = new CollisionlessRaft(net.minecraft.world.entity.EntityType.BAMBOO_RAFT, level, () -> Items.AIR);
+                CollisionlessRaft bambooRaft = new CollisionlessRaft(net.minecraft.world.entity.EntityTypes.BAMBOO_RAFT, level, () -> Items.AIR);
                 bambooRaft.setInitialPos(location.getX(), location.getY(), location.getZ());
                 bambooRaft.setYRot(yaw);
                 bambooRaft.yRotO = yaw;
@@ -242,7 +248,7 @@ public class SpawnHandler {
                 boat = new CraftBambooRaft(level.getCraftServer(), bambooRaft);
                 break;
             case "OAK_CHEST_BOAT":
-                CollisionlessChestBoat oakChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.OAK_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat oakChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.OAK_CHEST_BOAT, level, () -> Items.AIR);
                 oakChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 oakChestBoat.setYRot(yaw);
                 oakChestBoat.yRotO = yaw;
@@ -251,7 +257,7 @@ public class SpawnHandler {
                 boat = new CraftOakChestBoat(level.getCraftServer(), oakChestBoat);
                 break;
             case "SPRUCE_CHEST_BOAT":
-                CollisionlessChestBoat spruceChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.SPRUCE_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat spruceChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.SPRUCE_CHEST_BOAT, level, () -> Items.AIR);
                 spruceChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 spruceChestBoat.setYRot(yaw);
                 spruceChestBoat.yRotO = yaw;
@@ -260,7 +266,7 @@ public class SpawnHandler {
                 boat = new CraftSpruceChestBoat(level.getCraftServer(), spruceChestBoat);
                 break;
             case "BIRCH_CHEST_BOAT":
-                CollisionlessChestBoat birchChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.BIRCH_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat birchChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.BIRCH_CHEST_BOAT, level, () -> Items.AIR);
                 birchChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 birchChestBoat.setYRot(yaw);
                 birchChestBoat.yRotO = yaw;
@@ -269,7 +275,7 @@ public class SpawnHandler {
                 boat = new CraftBirchChestBoat(level.getCraftServer(), birchChestBoat);
                 break;
             case "JUNGLE_CHEST_BOAT":
-                CollisionlessChestBoat jungleChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.JUNGLE_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat jungleChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.JUNGLE_CHEST_BOAT, level, () -> Items.AIR);
                 jungleChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 jungleChestBoat.setYRot(yaw);
                 jungleChestBoat.yRotO = yaw;
@@ -278,7 +284,7 @@ public class SpawnHandler {
                 boat = new CraftJungleChestBoat(level.getCraftServer(), jungleChestBoat);
                 break;
             case "ACACIA_CHEST_BOAT":
-                CollisionlessChestBoat acaciaChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.ACACIA_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat acaciaChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.ACACIA_CHEST_BOAT, level, () -> Items.AIR);
                 acaciaChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 acaciaChestBoat.setYRot(yaw);
                 acaciaChestBoat.yRotO = yaw;
@@ -287,7 +293,7 @@ public class SpawnHandler {
                 boat = new CraftAcaciaChestBoat(level.getCraftServer(), acaciaChestBoat);
                 break;
             case "DARK_OAK_CHEST_BOAT":
-                CollisionlessChestBoat darkOakChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.DARK_OAK_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat darkOakChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.DARK_OAK_CHEST_BOAT, level, () -> Items.AIR);
                 darkOakChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 darkOakChestBoat.setYRot(yaw);
                 darkOakChestBoat.yRotO = yaw;
@@ -296,7 +302,7 @@ public class SpawnHandler {
                 boat = new CraftDarkOakChestBoat(level.getCraftServer(), darkOakChestBoat);
                 break;
             case "MANGROVE_CHEST_BOAT":
-                CollisionlessChestBoat mangroveChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.MANGROVE_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat mangroveChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.MANGROVE_CHEST_BOAT, level, () -> Items.AIR);
                 mangroveChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 mangroveChestBoat.setYRot(yaw);
                 mangroveChestBoat.yRotO = yaw;
@@ -305,7 +311,7 @@ public class SpawnHandler {
                 boat = new CraftMangroveChestBoat(level.getCraftServer(), mangroveChestBoat);
                 break;
             case "CHERRY_CHEST_BOAT":
-                CollisionlessChestBoat cherryChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityType.CHERRY_CHEST_BOAT, level, () -> Items.AIR);
+                CollisionlessChestBoat cherryChestBoat = new CollisionlessChestBoat(net.minecraft.world.entity.EntityTypes.CHERRY_CHEST_BOAT, level, () -> Items.AIR);
                 cherryChestBoat.setInitialPos(location.getX(), location.getY(), location.getZ());
                 cherryChestBoat.setYRot(yaw);
                 cherryChestBoat.yRotO = yaw;
@@ -314,7 +320,7 @@ public class SpawnHandler {
                 boat = new CraftCherryChestBoat(level.getCraftServer(), cherryChestBoat);
                 break;
             case "BAMBOO_CHEST_RAFT":
-                CollisionlessChestRaft bambooChestRaft = new CollisionlessChestRaft(net.minecraft.world.entity.EntityType.BAMBOO_CHEST_RAFT, level, () -> Items.AIR);
+                CollisionlessChestRaft bambooChestRaft = new CollisionlessChestRaft(net.minecraft.world.entity.EntityTypes.BAMBOO_CHEST_RAFT, level, () -> Items.AIR);
                 bambooChestRaft.setInitialPos(location.getX(), location.getY(), location.getZ());
                 bambooChestRaft.setYRot(yaw);
                 bambooChestRaft.yRotO = yaw;
@@ -325,7 +331,7 @@ public class SpawnHandler {
 
             default:
                 // Fallback to oak boat
-                CollisionlessBoat defaultColBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityType.OAK_BOAT, level, () -> Items.AIR);
+                CollisionlessBoat defaultColBoat = new CollisionlessBoat(net.minecraft.world.entity.EntityTypes.OAK_BOAT, level, () -> Items.AIR);
                 level.addFreshEntity(defaultColBoat, CreatureSpawnEvent.SpawnReason.COMMAND);
                 boat = new CraftOakBoat(level.getCraftServer(), defaultColBoat);
                 break;
